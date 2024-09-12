@@ -1,14 +1,6 @@
-import pymysql
-import credentials as cr
 import streamlit as st
 import yaml
 
-connection = pymysql.connect(
-    host=cr.host,
-    user=cr.user,
-    password=cr.password,
-    database=cr.database
-)
 
 def load_credentials():
     with open('config.yaml', 'r') as file:
