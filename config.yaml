@@ -1,0 +1,10 @@
+users:
+  admin1@gmail.com:
+    role: admin
+    password: admin_password
+  ann1@gmail.com:
+    role: user
+    password: qwert
+  user1@gmail.com:
+    role: user
+    password: user_password

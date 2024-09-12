@@ -1,23 +1,26 @@
 import streamlit as st
-import pymysql
 import credentials as cr
+import yaml
 
 st.set_page_config(page_title="Login")
 
-connection = pymysql.connect(
-    host=cr.host,
-    user=cr.user,
-    password=cr.password,
-    database=cr.database
-)
 
-admin = {
-    "admin1@gmail.com" : "@dm!n_ADMIN123",
-    "admin2@gmail.com" : "@dm!n_ADMIN789"
-}
+def load_credentials():
+    with open('config.yaml', 'r') as file:
+        config = yaml.safe_load(file)
+    return config['users']
+
+
+def authenticate(mail, password):
+    users = load_credentials()
+    if mail in users and users[mail]['password'] == password:
+        return users[mail]['role']
+    return None
+
 
 if 'authenticated' not in st.session_state:
     st.session_state['authenticated'] = False
+    st.session_state['role'] = None
 
 def login():
     st.subheader("Login")
@@ -25,35 +28,29 @@ def login():
     password = st.text_input("Password", type="password")
 
     try:
-        cur = connection.cursor()
         if st.button("Login"):
+            role = authenticate(mail, password)
 
-            if mail in admin:
-                if admin[mail] == password:
-                    st.session_state['authenticated'] = True
-                    st.success("Login successful! Welcome Admin, Redirecting to your workspace...")
-                    cr.key = 2
-                    st.write('<meta http-equiv="refresh" content="0; url=/admin_dashboard" />', unsafe_allow_html=True)
-                else:
-                    st.warning("Error! Invalid EMAIL or PASSWORD")
+            if role == "admin":
+                st.session_state['authenticated'] = True
+                st.session_state['role'] = role
+                st.success("Login successful! Welcome Admin, Redirecting to your workspace...")
+                cr.key = 2
+                st.write('<meta http-equiv="refresh" content="0; url=/admin_dashboard" />', unsafe_allow_html=True)
 
             elif mail == "" or password == "":
                 st.error("Please enter both email and password.")
+
+            elif role == "user":
+                st.session_state['authenticated'] = True
+                st.session_state['role'] = role
+                st.success("Login successful! Redirecting to Dashboard...")
+                cr.key = 1
+                st.experimental_set_query_params(logged_in="true")
+                st.rerun()
+
             else:
-                sql = "select * from student_register where email=%s and password=%s"
-                val = (mail, password)
-                cur.execute(sql, val)
-                row = cur.fetchone()
-                if row is None:
-                    st.warning("Error! Invalid EMAIL or PASSWORD")
-                else:
-                    st.session_state['authenticated'] = True
-                    st.success("Login successful! Redirecting to Dashboard...")
-                    cr.key = 1
-                    st.experimental_set_query_params(logged_in="true")
-                    st.rerun()
-        cur.close()
-        connection.close()
+                st.error("ERROR: Invalid Credentials")
 
     except Exception as e:
         st.error("An unexpected error occurred. Please try again.")
