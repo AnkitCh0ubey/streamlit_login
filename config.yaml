@@ -1,10 +1,10 @@
 users:
-  admin1@gmail.com:
+  admin2@gmail.com:
+    password: $2b$12$hrfxiGbteAMCH9i34op.MO6NEAwDsmKSYujOFDusyiCHepMktCVjS
     role: admin
-    password: admin_password
-  ann1@gmail.com:
+  gen1@gmail.com:
+    password: $2b$12$633vn/JjNdJt2.avdzY2leABnhF3.sCvXLm8To1xjMcss7a2v5XOW
     role: user
-    password: qwert
-  user1@gmail.com:
+  xyz@gmail.com:
+    password: xyz123
     role: user
-    password: user_password
