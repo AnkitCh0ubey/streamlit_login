@@ -71,7 +71,7 @@ def login():
                 st.success("Login successful! Redirecting to Dashboard...")
                 cr.key = 1
                 st.experimental_set_query_params(logged_in="true")
-                st.rerun()
+                st.write('<meta http-equiv="refresh" content="0; url=/dashboard" />', unsafe_allow_html=True)
 
             else:
                 st.error("ERROR: Invalid Credentials")
