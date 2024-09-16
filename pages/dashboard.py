@@ -8,7 +8,7 @@ if cr.key == 1:
 
 # Check if user is authenticated
 query_params = st.session_state.get("query_params", {})
-if st.session_state['authenticated'] or query_params.get("logged_in") == ["true"]:
+if st.session_state['authenticated'] or query_params.get("logged_in") == ["true"] and cr.key == 1:
     st.success("Welcome to dashboard")
 
     def display(filename='user_data1.xlsx'):
