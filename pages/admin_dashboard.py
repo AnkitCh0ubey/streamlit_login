@@ -4,12 +4,7 @@ from openpyxl import load_workbook
 import os
 import credentials as cr
 
-if cr.key == 2:
-    st.session_state['authenticated'] = True
-
-# Check if user is authenticated
-query_params = st.session_state.get("query_params", {})
-if (st.session_state['authenticated'] or query_params.get("logged_in") == ["true"]) and cr.key == 2:
+if  cr.key == 2:
     st.success("Welcome to dashboard")
 
     def save_data_to_excel(name, Choice):
@@ -66,7 +61,6 @@ if (st.session_state['authenticated'] or query_params.get("logged_in") == ["true
             st.error("Please enter your name.")
 
     if st.button("Logout"):
-        st.session_state.logged_in = False
         cr.key = 0
         st.write('<meta http-equiv="refresh" content="0; url=/login" />', unsafe_allow_html=True)
       # Rerun the app to reflect changes

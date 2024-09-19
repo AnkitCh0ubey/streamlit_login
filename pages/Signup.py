@@ -7,14 +7,14 @@ st.set_page_config(page_title="Sign Up")
 def load_credentials():
     with open('config.yaml', 'r') as file:
         config = yaml.safe_load(file)
-    return config['users']
+    return config['credentials']['usernames']
 
 
 def save_credentials(new_user):
     with open('config.yaml', 'r') as file:
         config = yaml.safe_load(file)
 
-    config['users'].update(new_user)
+    config['credentials']['usernames'].update(new_user)
 
     with open('config.yaml', 'w') as file:
         yaml.dump(config, file)
@@ -28,17 +28,19 @@ def signup():
 
     try:
         if st.button("Sign Up"):
-            salt = bcrypt.gensalt()
-            hashed_pw = bcrypt.hashpw(password.encode('utf-8'),salt)
+
             if email and password and name:
                 users = load_credentials()
                 if email in users:
                     st.error("Username already exists!")
                 else:
+                    salt = bcrypt.gensalt()
+                    hashed_pw = bcrypt.hashpw(password.encode('utf-8'), salt)
                     new_user = {
                         email: {
-                            'role': 'user',
-                            'password': hashed_pw.decode('utf-8')
+                            'name': name,
+                            'password': hashed_pw.decode('utf-8'),
+                            'role': 'user'
                         }
                     }
                     save_credentials(new_user)
@@ -48,5 +50,6 @@ def signup():
                 st.error("Please enter all the details")
     except Exception as e:
         st.error(f"Error: An error occured: {e}")
+
 if __name__ == "__main__":
     signup()
