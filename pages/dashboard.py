@@ -1,19 +1,21 @@
 import streamlit as st
+from click import launch
+
 import credentials as cr
 import os
 import pandas as pd
 
-# if cr.key == 1:
-#     st.session_state['authenticated'] = True
-#
-# # Check if user is authenticated
-# query_params = st.session_state.get("query_params", {})
-# if st.session_state['authenticated'] or query_params.get("logged_in") == ["true"] and cr.key == 1:
+st.set_page_config(layout="centered")
 
-# def check_authentication():
-#     """Check if the user is authenticated."""
-#     return st.session_state.get('authenticated', False)
+hide_sidebar_style = """
+       <style>
+           [data-testid="stSidebar"] {
+               display: none;
+           }
+       </style>
+   """
 
+st.markdown(hide_sidebar_style, unsafe_allow_html=True)
 if cr.key == 1:
     st.success("Welcome to dashboard")
 

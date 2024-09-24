@@ -4,6 +4,14 @@ cookie:
   name: excel_app
 credentials:
   usernames:
+    Techie:
+      name: Tech
+      password: $2b$12$18JEtp.wVA2abjtk1gfdkOEb9FAdeZ31IUgVyLqtOZMVFvnr4ytq2
+      role: user
+    Techie99:
+      name: Techie
+      password: $2b$12$g2jLaouJX/hIJLATbRErq.xu6hp4HLOUnq6J5a/aRumLA/STA9JM.
+      role: user
     admin2@gmail.com:
       name: Admin User
       password: $2b$12$hrfxiGbteAMCH9i34op.MO6NEAwDsmKSYujOFDusyiCHepMktCVjS
@@ -12,6 +20,22 @@ credentials:
       name: Ben 10
       password: $2b$12$UU8A9NYnfefp768EIB3zPunKXEgv2YWrwM.Z6MGKE9LN2xaWs/6HS
       role: user
+    gora@lund.com:
+      name: 'Charka '
+      password: $2b$12$NxbLpvfDM2C9ciAzKjOq6urY3HPkGen8AwXWg3KD2EOxLpRMhlApy
+      role: user
+    napolean:
+      name: napolean
+      password: $2b$12$cTm3FmDFxdYWktD7Ph2gk.FkCOMRv/grQmSRZ3CDUkdjlret5//T.
+      role: user
+    t2:
+      name: t1
+      password: $2b$12$SkyJiY1vPQ6ndB0mQ9oyOOSRG65BQatT8hYq8W2Ff8xa.BG38kPny
+      role: user
+    techh:
+      name: tech
+      password: $2b$12$XwJGFSaDlwn/e9K8eTh4/ubuqtolaBcpHQNIu9caAZKaBBxZnZD4m
+      role: user
     test10@gmail.com:
       name: Test10
       password: $2b$12$BuIU29nLwQ2N51RxmHMbduddDXtBJYyQGRuT7g6qyD/xFkQcPNzge
@@ -19,6 +43,10 @@ credentials:
     test123@gmail.com:
       name: Test123
       password: $2b$12$Gwl4fB3/gqPukee34d3bb.ln4.DrCAv9vjcKiBjo4fqlrF7MUbRQO
+      role: user
+    user123:
+      name: user123
+      password: $2b$12$eGuwvGOuxt8XVn/CASR9DezvmEm6csn/MYyQyIkClXI9A5a4ksBFO
       role: user
     xyz@gmail.com:
       name: XYZ

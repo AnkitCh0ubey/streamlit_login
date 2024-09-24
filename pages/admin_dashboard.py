@@ -1,14 +1,24 @@
 import streamlit as st
 import pandas as pd
+import credentials as cr
 from openpyxl import load_workbook
 import os
-import credentials as cr
+
+st.set_page_config(layout="wide")
+hide_sidebar_style = """
+           <style>
+               [data-testid="stSidebar"] {
+                   display: none;
+               }
+           </style>
+       """
+st.markdown(hide_sidebar_style, unsafe_allow_html=True)
 
 if  cr.key == 2:
     st.success("Welcome to dashboard")
 
-    def save_data_to_excel(name, Choice):
-        file_name = 'user_data1.xlsx'
+    def save_data_to_excel(name, choice):
+        file_name = './user_data1.xlsx'
         data = pd.DataFrame([[name, choice]], columns=['Name', 'Choice'])
 
         if not os.path.exists(file_name):
@@ -67,5 +77,8 @@ if  cr.key == 2:
 
 else:
     st.warning("Access Denied")
+    if st.button("Take me to login page"):
+        st.write('<meta http-equiv="refresh" content="0; url=/login" />', unsafe_allow_html=True)
+
 
 

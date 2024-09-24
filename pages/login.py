@@ -5,7 +5,21 @@ import yaml
 import streamlit_authenticator as stauth
 
 
-st.set_page_config(page_title="Login")
+
+# Add custom CSS to center the button
+button_css = """
+    <style>
+    .center-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+"""
+
+# Render the CSS
+st.markdown(button_css, unsafe_allow_html=True)
+
 
 def load_credentials():
     with open('./config.yaml') as file:
@@ -14,7 +28,6 @@ def load_credentials():
 
 
 def login():
-    st.subheader("Login")
 
     config = load_credentials()
     authenticator = stauth.Authenticate(
@@ -23,7 +36,6 @@ def login():
         config['cookie']['key'],
         config['cookie']['expiry_days']
     )
-
     #login form using authenticator (idk what the hell is this)
     name, auth_status, email = authenticator.login("main")
 
@@ -42,14 +54,19 @@ def login():
             st.success(f"Login successful! Welcome, {name}. Redirecting to your Dashboard...")
             st.write('<meta http-equiv="refresh" content="0; url=/dashboard" />', unsafe_allow_html=True)
 
-        # Add a logout button for the authenticated user
-        authenticator.logout("Logout")
 
     elif auth_status is False:
         st.error("ERROR: Invalid Credentials. Please try again.")
 
     elif auth_status is None:
         st.warning("Please enter your email and password.")
+
+
+    st.markdown('<div class="center-button">', unsafe_allow_html=True)
+    if st.button("Sign Up"):
+        st.write('<meta http-equiv="refresh" content="0; url=/Signup" />', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 if __name__ == "__main__":
