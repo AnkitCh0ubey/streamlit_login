@@ -16,15 +16,6 @@ button_css = """
 
 st.markdown(button_css,unsafe_allow_html=True)
 
-hide_sidebar_style = """
-       <style>
-           [data-testid="stSidebar"] {
-               display: none;
-           }
-       </style>
-   """
-
-st.markdown(hide_sidebar_style, unsafe_allow_html=True)
 
 def load_credentials():
     with open('./config.yaml', 'r') as file:

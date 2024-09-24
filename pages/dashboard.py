@@ -7,15 +7,6 @@ import pandas as pd
 
 st.set_page_config(layout="centered")
 
-hide_sidebar_style = """
-       <style>
-           [data-testid="stSidebar"] {
-               display: none;
-           }
-       </style>
-   """
-
-st.markdown(hide_sidebar_style, unsafe_allow_html=True)
 if cr.key == 1:
     st.success("Welcome to dashboard")
 

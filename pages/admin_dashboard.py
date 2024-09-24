@@ -5,14 +5,6 @@ from openpyxl import load_workbook
 import os
 
 st.set_page_config(layout="wide")
-hide_sidebar_style = """
-           <style>
-               [data-testid="stSidebar"] {
-                   display: none;
-               }
-           </style>
-       """
-st.markdown(hide_sidebar_style, unsafe_allow_html=True)
 
 if  cr.key == 2:
     st.success("Welcome to dashboard")
